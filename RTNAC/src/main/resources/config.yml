@@ -1,0 +1,119 @@
+# =====================================================
+#  RTNAC - Real Time Network Anti-Cheat
+#  Configuration
+# =====================================================
+
+settings:
+  alerts-enabled: true
+  alert-prefix: "&8[&c&lRTNAC&8] &r"
+  debug: false
+  # Violations decay by 1 every X seconds if the player behaves.
+  violation-decay-seconds: 10
+
+punishments:
+  enabled: true
+  # vl = violation-level threshold, command run as console.
+  # Placeholders: %player%
+  actions:
+    speed:
+      - vl: 10
+        command: "kick %player% &cKicked by RTNAC (Speed)"
+      - vl: 20
+        command: "ban %player% &cBanned by RTNAC (Speed) - Movement anomalies"
+    flight:
+      - vl: 8
+        command: "kick %player% &cKicked by RTNAC (Flight)"
+      - vl: 16
+        command: "ban %player% &cBanned by RTNAC (Flight)"
+    killaura:
+      - vl: 10
+        command: "kick %player% &cKicked by RTNAC (KillAura)"
+      - vl: 20
+        command: "ban %player% &cBanned by RTNAC (KillAura)"
+    reach:
+      - vl: 10
+        command: "kick %player% &cKicked by RTNAC (Reach)"
+    autoclicker:
+      - vl: 15
+        command: "kick %player% &cKicked by RTNAC (AutoClicker)"
+    scaffold:
+      - vl: 10
+        command: "kick %player% &cKicked by RTNAC (Scaffold)"
+    fastbreak:
+      - vl: 10
+        command: "kick %player% &cKicked by RTNAC (FastBreak)"
+    fastplace:
+      - vl: 10
+        command: "kick %player% &cKicked by RTNAC (FastPlace)"
+    nofall:
+      - vl: 10
+        command: "kick %player% &cKicked by RTNAC (NoFall)"
+    jesus:
+      - vl: 10
+        command: "kick %player% &cKicked by RTNAC (Jesus)"
+    timer:
+      - vl: 10
+        command: "kick %player% &cKicked by RTNAC (Timer)"
+    noslow:
+      - vl: 10
+        command: "kick %player% &cKicked by RTNAC (NoSlowdown)"
+
+checks:
+
+  speed:
+    enabled: true
+    max-blocks-per-second: 5.6      # baseline sprint-jump speed allowance
+    ice-multiplier: 1.9
+    buff-per-speed-level: 0.18
+
+  flight:
+    enabled: true
+    max-airtime-ticks: 40           # ticks allowed off-ground w/o falling before flagging
+    max-vertical-ascend: 4.2        # blocks/tick*20 ascend allowance without elytra/levitation
+
+  nofall:
+    enabled: true
+    min-fall-distance-for-damage: 3.5
+
+  jesus:
+    enabled: true
+    max-ticks-on-water: 6
+
+  noslowdown:
+    enabled: true
+    # Player must slow down while eating/blocking/sneaking; flags if speed kept above this
+    max-speed-while-active: 0.15
+
+  killaura:
+    enabled: true
+    max-angle-snap-deg: 165.0       # near-instant flick between two targets
+    min-hits-for-pattern: 4
+    max-attack-range-no-swing: true
+
+  reach:
+    enabled: true
+    max-reach-survival: 3.1
+    max-reach-creative: 5.1
+
+  autoclicker:
+    enabled: true
+    max-cps: 18
+    min-samples: 15
+    max-cps-stddev: 0.6            # flags unnaturally consistent click intervals
+
+  timer:
+    enabled: true
+    max-ticks-per-second: 22.5
+
+  scaffold:
+    enabled: true
+    max-place-angle-deviation: 15.0
+    min-placements-for-pattern: 5
+
+  fastplace:
+    enabled: true
+    max-blocks-per-second: 12
+
+  fastbreak:
+    enabled: true
+    min-break-time-multiplier: 0.6  # fraction of vanilla expected break time allowed

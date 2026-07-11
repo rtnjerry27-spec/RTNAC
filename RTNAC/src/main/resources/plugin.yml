@@ -1,0 +1,25 @@
+name: RTNAC
+version: '${project.version}'
+main: com.rtnac.RTNAC
+api-version: '1.21'
+author: RTNAC
+description: Real-Time Network Anti-Cheat
+website: https://github.com/yourname/RTNAC
+
+commands:
+  rtnac:
+    description: Main RTNAC admin command
+    usage: /rtnac <reload|checks|status|alerts|history|ban-remove>
+    permission: rtnac.admin
+    aliases: [rnac, anticheat]
+
+permissions:
+  rtnac.admin:
+    description: Full access to RTNAC admin commands
+    default: op
+  rtnac.alerts:
+    description: Receive real-time cheat alerts
+    default: op
+  rtnac.bypass:
+    description: Bypass all RTNAC checks
+    default: false
